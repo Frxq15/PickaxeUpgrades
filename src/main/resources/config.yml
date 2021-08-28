@@ -1,0 +1,21 @@
+GUIS:
+  PICKAXE_GUI:
+    TITLE: "&bPickaxe Upgrades"
+    ITEMS:
+      TOKENS:
+        NAME: "&b&nYour Tokens"
+        SLOT: 50
+        MATERIAL: "PAPER"
+        GLOW: false
+        LORE:
+          - "&7You have &b%tokens% &7tokens."
+      PLAYER_PICKAXE:
+        SLOT: 49
+      INFORMATION:
+        NAME: "&b&nUpgrade Information"
+        SLOT: 48
+        MATERIAL: "BOOK"
+        GLOW: false
+        LORE:
+          - "&7You can purchase upgrades for tokens"
+          - "&7drizzy im too lazy for this configure it yourself x"
