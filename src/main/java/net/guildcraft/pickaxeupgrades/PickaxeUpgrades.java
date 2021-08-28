@@ -34,7 +34,7 @@ public final class PickaxeUpgrades extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new Listeners(), this);
     }
     public void dependencyCheck() {
-        if(!Bukkit.getPluginManager().isPluginEnabled(GCTokenManager.getInstance())) {
+        if(!Bukkit.getPluginManager().isPluginEnabled("GCTokenManager")) {
             log("GCTokenManager dependency not found, cannot start plugin.");
             Bukkit.getPluginManager().disablePlugin(this);
         }

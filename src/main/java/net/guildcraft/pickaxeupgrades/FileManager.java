@@ -29,7 +29,7 @@ public class FileManager {
         }
     }
     public void createLogFile() {
-        LogFile = new File(PickaxeUpgrades.getInstance().getDataFolder(), "logger.yml");
+        LogFile = new File(PickaxeUpgrades.getInstance().getDataFolder(), "log.yml");
         if (!LogFile.exists()) {
             LogFile.getParentFile().mkdirs();
             PickaxeUpgrades.getInstance().log("log.yml was created successfully");
