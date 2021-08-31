@@ -1,21 +1,73 @@
 GUIS:
   PICKAXE_GUI:
-    TITLE: "&bPickaxe Upgrades"
+    TITLE: "&fPickaxe Upgrades"
     ITEMS:
+      ENABLE_COMING_SOON: true #if enabled coming soon enchantment items will be enabled.
       TOKENS:
-        NAME: "&b&nYour Tokens"
-        SLOT: 50
-        MATERIAL: "PAPER"
+        NAME: "&b&lPickaxe Tokens"
+        SLOT: 2
+        MATERIAL: "ENDER_EYE"
         GLOW: false
         LORE:
+          - "&7Tokens are used as currency to purchase"
+          - "&7pickaxe upgrade enchantments."
+          - ""
+          - "&7You can earn tokens by killing players or"
+          - "&7from mining, the chance is randomly generated."
+          - ""
+          - "&7Tokens also have a small percentage to be"
+          - "&7won with keys at &7&n/warp crates&7."
+          - ""
           - "&7You have &b%tokens% &7tokens."
       PLAYER_PICKAXE:
-        SLOT: 49
+        SLOT: 4
+        UPGRADING_LORE_TEXT: "&c&l☣ &cYou are currently upgrading this pickaxe"
       INFORMATION:
-        NAME: "&b&nUpgrade Information"
-        SLOT: 48
+        NAME: "&b&lUpgrade Information"
+        SLOT: 6
+        MATERIAL: "BLAZE_POWDER"
+        GLOW: false
+        LORE:
+          - "&7You can purchase upgrades for a certain amount"
+          - "&7of tokens, the price will change depending on"
+          - "&7the type of upgrade."
+          - ""
+          - "&7Each enchantment has a maxiumum level to keep"
+          - "&7the economy balanced."
+          - ""
+          - "&7Every upgrade completed is logged to prevent"
+          - "&7any false reports."
+      ENCHANTMENT_ITEM_FORMAT:
+        NAME: "&b&l%enchantment%"
         MATERIAL: "BOOK"
         GLOW: false
         LORE:
-          - "&7You can purchase upgrades for tokens"
-          - "&7drizzy im too lazy for this configure it yourself x"
+          - ""
+          - "&7%description%"
+          - ""
+          - "&b&l ┃ &7Current Level: &b%current%"
+          - "&b&l ┃ &7Max Level: &b%max%"
+          - "&b&l ┃ &7Upgrade Cost: &b%cost%"
+          - ""
+          - "&7Click to purchase this upgrade."
+      ENCHANTMENT_ITEM_FORMAT_MAXIMUM:
+        NAME: "&b&l%enchantment%"
+        MATERIAL: "ENCHANTED_BOOK"
+        GLOW: false
+        LORE:
+          - ""
+          - "&7%description%"
+          - ""
+          - "&b&l ┃ &7Current Level: &b%current%"
+          - "&b&l ┃ &7Max Level: &b%max%"
+          - "&b&l ┃ &7Upgrade Cost: &bN/A"
+          - ""
+          - "&7You already have the maximum level of this enchant."
+      MISC_ITEMS:
+        PANE_1:
+          ENABLED: false
+          NAME: ""
+          SLOT: 0
+          MATERIAL: "STAINED_GLASS_PANE"
+          GLOW: false
+          LORE: []

@@ -2,6 +2,10 @@ name: PickaxeUpgrades
 version: ${project.version}
 main: net.guildcraft.pickaxeupgrades.PickaxeUpgrades
 authors: [Frxq15]
+api-version: 1.17
 depend:
   - GCTokenManager
 description: Pickaxe upgrade plugin
+commands:
+  pupgrades:
+    description: pupgrades command

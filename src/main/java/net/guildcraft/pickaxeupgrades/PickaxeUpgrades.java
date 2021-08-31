@@ -1,8 +1,12 @@
 package net.guildcraft.pickaxeupgrades;
 
 import net.guildcraft.gctokenmanager.GCTokenManager;
+import net.guildcraft.pickaxeupgrades.Commands.pUpgradesCommand;
+import net.guildcraft.pickaxeupgrades.EnchantManager.Enchantments;
+import net.guildcraft.pickaxeupgrades.Objects.UpgradeManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
@@ -12,6 +16,8 @@ import java.util.List;
 public final class PickaxeUpgrades extends JavaPlugin {
     private static PickaxeUpgrades instance;
     public FileManager fileManager;
+    public Enchantments enchantments;
+    public UpgradeManager upgradeManager;
 
     @Override
     public void onEnable() {
@@ -19,6 +25,7 @@ public final class PickaxeUpgrades extends JavaPlugin {
         saveDefaultConfig();
         getConfig().options().copyDefaults(true);
         getFileManager().createLogFile();
+        getFileManager().createUpgradesFile();
         log("Plugin enabled successfully.");
         dependencyCheck();
     }
@@ -31,7 +38,9 @@ public final class PickaxeUpgrades extends JavaPlugin {
     public void initializeClasses() {
         instance = this;
         fileManager = new FileManager();
+        enchantments = new Enchantments();
         Bukkit.getPluginManager().registerEvents(new Listeners(), this);
+        getCommand("pupgrades").setExecutor(new pUpgradesCommand());
     }
     public void dependencyCheck() {
         if(!Bukkit.getPluginManager().isPluginEnabled("GCTokenManager")) {
@@ -41,6 +50,10 @@ public final class PickaxeUpgrades extends JavaPlugin {
     }
     public static PickaxeUpgrades getInstance() { return instance; }
     public FileManager getFileManager() { return fileManager; }
+    public Enchantments getEnchantmentsManager() { return enchantments; }
+    public UpgradeManager getUpgradeManager(Player p) {
+        upgradeManager = new UpgradeManager(p);
+        return upgradeManager; }
     public void log(String log) { Bukkit.getConsoleSender().sendMessage(ChatColor.AQUA+"[PickaxeUpgrades] "+log); }
     public static String colourize(String input) {
         return ChatColor.translateAlternateColorCodes('&', input);

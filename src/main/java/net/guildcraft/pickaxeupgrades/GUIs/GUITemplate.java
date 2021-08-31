@@ -2,14 +2,14 @@ package net.guildcraft.pickaxeupgrades.GUIs;
 
 import net.guildcraft.gctokenmanager.GCTokenManager;
 import net.guildcraft.gctokenmanager.SQLManagement.PlayerData;
+import net.guildcraft.pickaxeupgrades.EnchantManager.Enchantments;
 import net.guildcraft.pickaxeupgrades.Objects.Pickaxe;
+import net.guildcraft.pickaxeupgrades.Objects.UpgradeManager;
 import net.guildcraft.pickaxeupgrades.PickaxeUpgrades;
-import org.bukkit.Bukkit;
-import org.bukkit.Instrument;
-import org.bukkit.Material;
-import org.bukkit.Note;
+import org.bukkit.*;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.enchantments.EnchantmentWrapper;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
@@ -45,8 +45,16 @@ public class GUITemplate {
     protected ItemStack createGuiItem(final Material material, final String name, final String... lore) {
         final ItemStack item = new ItemStack(material, 1);
         final ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName(name);
+        meta.setDisplayName(PickaxeUpgrades.colourize(name));
         meta.setLore(PickaxeUpgrades.colourize(Arrays.asList(lore)));
+        item.setItemMeta(meta);
+        return item;
+    }
+
+    protected ItemStack createGuiItem(final Material material, final String name) {
+        final ItemStack item = new ItemStack(material, 1);
+        final ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName(PickaxeUpgrades.colourize(name));
         item.setItemMeta(meta);
         return item;
     }
@@ -150,5 +158,54 @@ public class GUITemplate {
         }
         item.setItemMeta(meta);
         return item;
+    }
+    public ItemStack getEnchantmentItem(String path, Player p, String enchant, Enchantment enchantment) {
+        FileConfiguration fc = PickaxeUpgrades.getInstance().getConfig();
+        Pickaxe pick = new Pickaxe(p.getInventory().getItemInMainHand());
+        List<String> lore = new ArrayList<>();
+        ItemStack item = new ItemStack(Material.valueOf(fc.getString(path+".MATERIAL")));
+        ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName(PickaxeUpgrades.formatMsg(path+".NAME").replace("%enchantment%", enchant));
+        if(fc.getBoolean(path+".GLOW")) {
+            meta.addEnchant(Enchantment.DURABILITY, 1, false);
+            meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        }
+        item.setItemMeta(meta);
+        UpgradeManager up = new UpgradeManager(p);
+        for(String line : fc.getStringList(path+".LORE")) {
+            line = line.replace("%cost%", up.getUpgradeCostText(enchantment));
+            line = line.replace("%current%", pick.getEnchantLevel(enchantment)+"");
+            line = line.replace("%max%",
+                    PickaxeUpgrades.getInstance().getEnchantmentsManager().getMaxLevel(enchantment.getName())+"");
+            line = line.replace("%description%", PickaxeUpgrades.getInstance().getEnchantmentsManager().getDescription(enchantment.getName()));
+            lore.add(line);
+        }
+        meta.setLore(PickaxeUpgrades.colourize(lore));
+        item.setItemMeta(meta);
+        return item;
+    }
+    public ItemStack currentlyUpgrading(ItemStack pick) {
+        ItemStack stack = new ItemStack(pick.getType());
+        ItemMeta meta = stack.getItemMeta();
+        ItemMeta meta2 = pick.getItemMeta();
+        List<String> lore = new ArrayList<>();
+        if(meta2.getLore() != null) {
+            meta2.getLore().forEach(line -> {
+                lore.add(line);
+            });
+        }
+        lore.add("");
+        lore.add(PickaxeUpgrades.getInstance().getConfig().getString("GUIS.PICKAXE_GUI.ITEMS.PLAYER_PICKAXE.UPGRADING_LORE_TEXT"));
+        meta.setLore(PickaxeUpgrades.colourize(lore));
+        meta.setDisplayName(PickaxeUpgrades.colourize(meta2.getDisplayName()));
+        meta2.getItemFlags().forEach(flag -> {
+            meta.addItemFlags(flag);
+        });
+        meta2.getEnchants().forEach((enchant, lvl) -> {
+            meta.addEnchant(enchant, lvl, true);
+        });
+        stack.setDurability(pick.getDurability());
+        stack.setItemMeta(meta);
+        return stack;
     }
 }

@@ -1,0 +1,33 @@
+ENCHANTMENTS:
+  DIG_SPEED:
+    NAME: "Efficiency"
+    DESCRIPTION: "&f&oMine faster than ever before with this enchant."
+    MAXIMUM_LEVEL: 25
+    GUI_SLOT: 10
+    UPGRADE_COSTS:
+      1: 10
+      2: 20
+      3: 30
+      4: 40
+      5: 50
+      6: 60
+      7: 70
+      8: 80
+      9: 90
+      10: 100
+  LOOT_BONUS_BLOCKS:
+    NAME: "Fortune"
+    DESCRIPTION: "&f&oBecome richer than ever with this enchant."
+    MAXIMUM_LEVEL: 25
+    GUI_SLOT: 11
+    UPGRADE_COSTS:
+      1: 10
+      2: 20
+      3: 30
+      4: 40
+      5: 50
+      6: 60
+      7: 70
+      8: 80
+      9: 90
+      10: 100
