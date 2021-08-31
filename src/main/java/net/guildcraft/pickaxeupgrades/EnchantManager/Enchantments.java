@@ -1,6 +1,7 @@
 package net.guildcraft.pickaxeupgrades.EnchantManager;
 
 import net.guildcraft.pickaxeupgrades.PickaxeUpgrades;
+import org.bukkit.enchantments.Enchantment;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -20,5 +21,8 @@ public class Enchantments {
     }
     public String getDescription(String enchant) {
         return PickaxeUpgrades.getInstance().getFileManager().getUpgradesFile().getString("ENCHANTMENTS."+enchant+".DESCRIPTION");
+    }
+    public String getEnchantmentName(Enchantment enchant) {
+        return PickaxeUpgrades.getInstance().getFileManager().getUpgradesFile().getString("ENCHANTMENTS."+enchant+".NAME");
     }
 }

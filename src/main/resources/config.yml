@@ -1,3 +1,6 @@
+MESSAGES:
+  NO_PERMISSION: "&cYou dont have permission to perform this command."
+  UPGRADE_CANCELLED: "&f[&bGuildCraft&f] &cYou have cancelled this upgrade."
 GUIS:
   PICKAXE_GUI:
     TITLE: "&fPickaxe Upgrades"
@@ -71,3 +74,14 @@ GUIS:
           MATERIAL: "STAINED_GLASS_PANE"
           GLOW: false
           LORE: []
+  CONFIRM_GUI:
+    TITLE: "&fUpgrade Confirmation"
+    ITEMS:
+      CANCEL_UPGRADE:
+        NAME: "&c&lCancel Upgrade"
+        MATERIAL: "RED_DYE"
+        SLOT: 2
+        GLOW: false
+        LORE:
+          - "&7Click to cancel this enchantment upgrade."
+

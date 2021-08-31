@@ -41,9 +41,15 @@ public class PickaxeGUI extends GUITemplate {
         }
         PickaxeUpgrades.getInstance().getFileManager().getUpgradesFile().getConfigurationSection("ENCHANTMENTS").getKeys(false).forEach(ench -> {
             FileConfiguration f = PickaxeUpgrades.getInstance().getFileManager().getUpgradesFile();
-            setItem(f.getInt("ENCHANTMENTS."+ench+".GUI_SLOT"), getItem(ench), player -> {
-                Bukkit.broadcastMessage(ench);
-            });
+            if(PickaxeUpgrades.getInstance().getUpgradeManager(p).isMaximumLevel(Enchantment.getByName(ench))) {
+                setItem(f.getInt("ENCHANTMENTS."+ench+".GUI_SLOT"), getItem(ench));
+            }
+            if(!PickaxeUpgrades.getInstance().getUpgradeManager(p).isMaximumLevel(Enchantment.getByName(ench))) {
+                setItem(f.getInt("ENCHANTMENTS."+ench+".GUI_SLOT"), getItem(ench), player -> {
+                    new ConfirmGUI(p, pickaxe, Enchantment.getByName(ench),
+                            PickaxeUpgrades.getInstance().getUpgradeManager(p).getUpgradeCost(Enchantment.getByName(ench))).open(p);
+                });
+            }
         });
     }
     public ItemStack getItem(String enchant) {
