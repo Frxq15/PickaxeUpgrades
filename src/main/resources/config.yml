@@ -1,6 +1,7 @@
 MESSAGES:
   NO_PERMISSION: "&cYou dont have permission to perform this command."
   UPGRADE_CANCELLED: "&f[&bGuildCraft&f] &cYou have cancelled this upgrade."
+  UPGRADE_COMPLETE: "&f[&bGuildCraft&f] &7You upgraded the &b%enchant% &7enchantment to &bLevel %new% &7for &b%cost% &7Tokens."
 GUIS:
   PICKAXE_GUI:
     TITLE: "&fPickaxe Upgrades"
@@ -84,4 +85,63 @@ GUIS:
         GLOW: false
         LORE:
           - "&7Click to cancel this enchantment upgrade."
+      PLAYER_PICKAXE:
+        SLOT: 4
+        UPGRADING_LORE_TEXT: "&c&l☣ &cYou are currently upgrading this pickaxe"
+      INFORMATION:
+        NAME: "&b&lUpgrade Information"
+        SLOT: 6
+        MATERIAL: "BOOK"
+        GLOW: false
+        LORE:
+          - ""
+          - "%description%"
+          - ""
+          - "&b&l ┃ &7Upgrade Cost: &b%cost%"
+          - "&b&l ┃ &7Enchantment: &b%enchant% &7(%enchantname%)"
+          - "&b&l ┃ &7New Level: &b%new%"
+          - ""
+          - "&7Click confirm to complete this upgrade."
+      CONFIRM:
+        NAME: "&aConfirm Upgrade"
+        MATERIAL: "LIME_STAINED_GLASS_PANE"
+        GLOW: false
+        LORE:
+          - ""
+          - "&f&oThis will upgrade the enchantment on your pickaxe."
+          - ""
+          - "&b&l ┃ &7Upgrade Cost: &b%cost%"
+          - "&b&l ┃ &7Enchantment: &b%enchant% &7(%enchantname%)"
+          - "&b&l ┃ &7New Level: &b%new%"
+          - ""
+          - "&c&lNOTE: &fThe upgrade process is automatic and"
+          - "&flogged, upgrades cannot be reversed."
+          - ""
+          - "&7Click to confirm this upgrade."
+        SLOTS:
+          - 10
+          - 11
+          - 12
+          - 19
+          - 20
+          - 21
+          - 28
+          - 29
+          - 30
+      CANCEL:
+        NAME: "&cCancel Upgrade"
+        MATERIAL: "RED_STAINED_GLASS_PANE"
+        GLOW: false
+        LORE:
+          - "&7Click to cancel this enchantment upgrade."
+        SLOTS:
+          - 14
+          - 15
+          - 16
+          - 23
+          - 24
+          - 25
+          - 32
+          - 33
+          - 34
 

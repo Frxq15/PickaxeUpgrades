@@ -3,9 +3,15 @@ package net.guildcraft.pickaxeupgrades.GUIs;
 import net.guildcraft.pickaxeupgrades.Objects.Pickaxe;
 import net.guildcraft.pickaxeupgrades.PickaxeUpgrades;
 import org.bukkit.Bukkit;
+import org.bukkit.Instrument;
+import org.bukkit.Note;
+import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConfirmGUI extends GUITemplate {
     private Player p;
@@ -24,10 +30,30 @@ public class ConfirmGUI extends GUITemplate {
         initializeItems();
     }
     public void initializeItems() {
+        int newlvl = pick.getEnchantLevel(enchant)+1;
         setItem(fc.getInt("GUIS.CONFIRM_GUI.ITEMS.CANCEL_UPGRADE.SLOT"), getItemFromConfig("GUIS.CONFIRM_GUI.ITEMS.CANCEL_UPGRADE", p), player -> {
-            p.getOpenInventory().close();
-            p.sendMessage(PickaxeUpgrades.formatMsg("MESSAGES.UPGRADE_CANCELLED"));
             delete();
+            p.sendMessage(PickaxeUpgrades.formatMsg("MESSAGES.UPGRADE_CANCELLED"));
         });
+        setItem(fc.getInt("GUIS.CONFIRM_GUI.ITEMS.PLAYER_PICKAXE.SLOT"), currentlyUpgrading(pick.asItem()));
+        setItem(fc.getInt("GUIS.CONFIRM_GUI.ITEMS.INFORMATION.SLOT"), getUpgradeInfo(p, enchant, "INFORMATION"));
+        for(String c : fc.getStringList("GUIS.CONFIRM_GUI.ITEMS.CONFIRM.SLOTS")) {
+            int slot = Integer.parseInt(c);
+            setItem(slot, getUpgradeInfo(p, enchant, "CONFIRM"), player -> {
+                p.sendMessage(PickaxeUpgrades.formatMsg("MESSAGES.UPGRADE_COMPLETE")
+                        .replace("%cost%", cost+"")
+                        .replace("%enchant%", name).replace("%new%", newlvl+""));
+                p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
+                delete();
+            });
+        }
+        for(String c : fc.getStringList("GUIS.CONFIRM_GUI.ITEMS.CANCEL.SLOTS")) {
+            int slot = Integer.parseInt(c);
+            setItem(slot, getItemFromConfig("GUIS.CONFIRM_GUI.ITEMS.CANCEL", p), player -> {
+                delete();
+                p.playSound(p.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 1, 1);
+                p.sendMessage(PickaxeUpgrades.formatMsg("MESSAGES.UPGRADE_CANCELLED"));
+            });
+        }
     }
 }

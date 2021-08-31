@@ -184,6 +184,35 @@ public class GUITemplate {
         item.setItemMeta(meta);
         return item;
     }
+    public ItemStack getUpgradeInfo(Player p, Enchantment enchant, String type) {
+        FileConfiguration fc = PickaxeUpgrades.getInstance().getConfig();
+        List<String> lore = new ArrayList<>();
+        ItemStack item = new ItemStack(Material.valueOf(fc.getString("GUIS.CONFIRM_GUI.ITEMS."+type+".MATERIAL")));
+        ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName(PickaxeUpgrades.formatMsg("GUIS.CONFIRM_GUI.ITEMS."+type+".NAME"));
+        if(fc.getBoolean("GUIS.CONFIRM_GUI.ITEMS."+type+".GLOW")) {
+            meta.addEnchant(Enchantment.DURABILITY, 1, false);
+            meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        }
+        item.setItemMeta(meta);
+        UpgradeManager up = new UpgradeManager(p);
+        String cost = up.getUpgradeCostText(enchant);
+        String name = PickaxeUpgrades.getInstance().getEnchantmentsManager().getEnchantmentName(enchant);
+        Pickaxe pick = new Pickaxe(p.getInventory().getItemInMainHand());
+        int newlvl = pick.getEnchantLevel(enchant)+1;
+        for(String line : fc.getStringList("GUIS.CONFIRM_GUI.ITEMS."+type+".LORE")) {
+            line = line.replace("%cost%", cost);
+            line = line.replace("%enchant%", name);
+            line = line.replace("%enchantname%", enchant.getName());
+            line = line.replace("%new%",
+                    newlvl+"");
+            line = line.replace("%description%", PickaxeUpgrades.getInstance().getEnchantmentsManager().getDescription(enchant.getName()));
+            lore.add(line);
+        }
+        meta.setLore(PickaxeUpgrades.colourize(lore));
+        item.setItemMeta(meta);
+        return item;
+    }
     public ItemStack currentlyUpgrading(ItemStack pick) {
         ItemStack stack = new ItemStack(pick.getType());
         ItemMeta meta = stack.getItemMeta();

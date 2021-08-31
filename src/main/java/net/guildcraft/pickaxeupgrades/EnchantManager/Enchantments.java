@@ -23,6 +23,6 @@ public class Enchantments {
         return PickaxeUpgrades.getInstance().getFileManager().getUpgradesFile().getString("ENCHANTMENTS."+enchant+".DESCRIPTION");
     }
     public String getEnchantmentName(Enchantment enchant) {
-        return PickaxeUpgrades.getInstance().getFileManager().getUpgradesFile().getString("ENCHANTMENTS."+enchant+".NAME");
+        return PickaxeUpgrades.getInstance().getFileManager().getUpgradesFile().getString("ENCHANTMENTS."+enchant.getName()+".NAME");
     }
 }
