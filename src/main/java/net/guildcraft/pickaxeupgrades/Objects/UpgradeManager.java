@@ -18,7 +18,7 @@ public class UpgradeManager {
         this.p = p;
     }
     public boolean isMaximumLevel(Enchantment enchant) {
-        if(pick.getEnchantmentLevel(enchant) >= PickaxeUpgrades.getInstance().getEnchantmentsManager().getMaxLevel(enchant.getName())) {
+        if(pickaxe.getEnchantLevel(enchant.getName()) >= PickaxeUpgrades.getInstance().getEnchantmentsManager().getMaxLevel(enchant.getName())) {
             return true;
         }
         return false;
@@ -27,7 +27,7 @@ public class UpgradeManager {
         if(isMaximumLevel(enchant)) {
             return "N/A";
         }
-        int current = pickaxe.getEnchantLevel(enchant) + 1;
+        int current = pickaxe.getEnchantLevel(enchant.getName()) + 1;
         String newup = String.valueOf(current);
         return PickaxeUpgrades.getInstance().getFileManager().getUpgradesFile().getInt("ENCHANTMENTS."+enchant.getName()+".UPGRADE_COSTS."+newup)+" Tokens";
     }
@@ -35,17 +35,21 @@ public class UpgradeManager {
         if(isMaximumLevel(enchant)) {
             return 0;
         }
-        int current = pickaxe.getEnchantLevel(enchant);
+        int current = pickaxe.getEnchantLevel(enchant.getName());
         String newup = String.valueOf((current+1));
         return PickaxeUpgrades.getInstance().getFileManager().getUpgradesFile().getInt("ENCHANTMENTS."+enchant.getName()+".UPGRADE_COSTS."+newup);
     }
-    public void completeUpgrade(Enchantment enchant, int cost) {
-        int newlvl = pick.getEnchantmentLevel(enchant) + 1;
+    public void completeUpgrade(String enchant, int cost) {
+        int newlvl = pickaxe.getEnchantLevel(enchant) + 1;
         ItemMeta meta = pick.getItemMeta();
-        meta.addEnchant(enchant, newlvl, true);
+        meta.addEnchant(Enchantment.getByName(enchant), newlvl, true);
         pick.setItemMeta(meta);
+        if(pickaxe.isCustomEnchant(enchant)) {
+            meta.addEnchant(Enchantment.getByName(enchant), newlvl, true);
+            PickaxeUpgrades.getInstance().getEnchantmentsManager().addEnchantmentLore(pick, enchant, newlvl);
+        }
         PlayerData pd = PlayerData.getPlayerData(p.getUniqueId());
         pd.takeTokens(cost);
-        PickaxeUpgrades.getInstance().getTransactionManager(p).createLog(enchant.getName(), newlvl, cost);
+        PickaxeUpgrades.getInstance().getTransactionManager(p).createLog(enchant, newlvl, cost);
     }
 }

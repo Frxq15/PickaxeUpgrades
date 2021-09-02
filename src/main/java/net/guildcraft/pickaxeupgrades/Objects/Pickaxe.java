@@ -19,18 +19,20 @@ public class Pickaxe {
     public ItemMeta getMeta() { return pick.getItemMeta(); }
     public String getName() { return getMeta().getDisplayName(); }
     public List<String> getLore() { return getMeta().getLore(); }
-    public Integer getEnchantLevel(Enchantment enchant) { return pick.getEnchantmentLevel(enchant); }
+    public Integer getEnchantLevel(String enchant) {
+        if(isCustomEnchant(enchant)) {
+            return PickaxeUpgrades.getInstance().getEnchantmentsManager().getCustomLevel(pick, enchant);
+        }
+        return pick.getEnchantmentLevel(Enchantment.getByName(enchant)); }
     public Material getType() { return pick.getType(); }
     public short getDurability() { return pick.getDurability(); }
     public void setDurability(short durability) { pick.setDurability(durability); }
     public void setEnchant(Enchantment enchant, int amount) { pick.addUnsafeEnchantment(enchant, amount); }
     public boolean hasEnchant(String enchant) {
-        if(pick.getEnchantments().containsKey(Enchantment.getByName(enchant))) { return true; }
+        if(PickaxeUpgrades.getInstance().getEnchantmentsManager().getCustomLevel(pick, enchant) > 0) {
+            return true;
+        }
         return false;
-    }
-    public void increaseEnchant(Enchantment enchant, int amount) {
-        int upgrade = getEnchantLevel(enchant) + amount;
-        pick.addUnsafeEnchantment(enchant, upgrade);
     }
     public boolean isPickaxe() {
         if(getType().toString().toLowerCase().contains("pickaxe")) {
@@ -40,6 +42,12 @@ public class Pickaxe {
     }
     public ItemStack asItem() {
         return pick;
+    }
+    public boolean isCustomEnchant(String enchant) {
+        if(PickaxeUpgrades.getInstance().getFileManager().getUpgradesFile().getBoolean("ENCHANTMENTS."+enchant+".CUSTOM")) {
+            return true;
+        }
+        return false;
     }
     //getupgrade cost
 }

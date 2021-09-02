@@ -31,7 +31,7 @@ public class Enchantments {
         return PickaxeUpgrades.getInstance().getFileManager().getUpgradesFile().getString("ENCHANTMENTS."+enchant.getName()+".NAME");
     }
     public Integer getCustomLevel(ItemStack stack, String enchantment) {
-        AtomicInteger level = new AtomicInteger();
+        AtomicInteger level = new AtomicInteger(0);
         stack.getEnchantments().forEach((enchant, lvl) -> {
             if(enchant.equals(Enchantment.getByName(enchantment))) {
                 level.set(lvl);

@@ -30,7 +30,7 @@ public class ConfirmGUI extends GUITemplate {
         initializeItems();
     }
     public void initializeItems() {
-        int newlvl = pick.getEnchantLevel(enchant)+1;
+        int newlvl = pick.getEnchantLevel(enchant.getName())+1;
         setItem(fc.getInt("GUIS.CONFIRM_GUI.ITEMS.CANCEL_UPGRADE.SLOT"), getItemFromConfig("GUIS.CONFIRM_GUI.ITEMS.CANCEL_UPGRADE", p), player -> {
             delete();
             p.sendMessage(PickaxeUpgrades.formatMsg("MESSAGES.UPGRADE_CANCELLED"));
@@ -44,7 +44,7 @@ public class ConfirmGUI extends GUITemplate {
                         .replace("%cost%", cost+"")
                         .replace("%enchant%", name).replace("%new%", newlvl+""));
                 p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
-                PickaxeUpgrades.getInstance().getUpgradeManager(p).completeUpgrade(enchant, cost);
+                PickaxeUpgrades.getInstance().getUpgradeManager(p).completeUpgrade(enchant.getName(), cost);
                 delete();
             });
         }

@@ -176,7 +176,7 @@ public class GUITemplate {
         UpgradeManager up = new UpgradeManager(p);
         for(String line : fc.getStringList(path+".LORE")) {
             line = line.replace("%cost%", up.getUpgradeCostText(enchantment));
-            line = line.replace("%current%", pick.getEnchantLevel(enchantment)+"");
+            line = line.replace("%current%", pick.getEnchantLevel(enchantment.getName())+"");
             line = line.replace("%max%",
                     PickaxeUpgrades.getInstance().getEnchantmentsManager().getMaxLevel(enchantment.getName())+"");
             line = line.replace("%description%", PickaxeUpgrades.getInstance().getEnchantmentsManager().getDescription(enchantment.getName()));
@@ -201,7 +201,7 @@ public class GUITemplate {
         String cost = up.getUpgradeCostText(enchant);
         String name = PickaxeUpgrades.getInstance().getEnchantmentsManager().getEnchantmentName(enchant);
         Pickaxe pick = new Pickaxe(p.getInventory().getItemInMainHand());
-        int newlvl = pick.getEnchantLevel(enchant)+1;
+        int newlvl = pick.getEnchantLevel(enchant.getName())+1;
         for(String line : fc.getStringList("GUIS.CONFIRM_GUI.ITEMS."+type+".LORE")) {
             line = line.replace("%cost%", cost);
             line = line.replace("%enchant%", name);
