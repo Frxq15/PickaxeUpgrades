@@ -3,13 +3,16 @@ package net.guildcraft.pickaxeupgrades.EnchantManager.CustomEnchants;
 import net.guildcraft.pickaxeupgrades.Objects.Pickaxe;
 import net.guildcraft.pickaxeupgrades.PickaxeUpgrades;
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.ExplosionPrimeEvent;
 
 public class EnchantmentListeners implements Listener {
     @EventHandler
@@ -30,6 +33,7 @@ public class EnchantmentListeners implements Listener {
             if (random <= chance) {
                 //p.getWorld().spawn(p.getLocation(), TNTPrimed.class);
                 float size = fc.getInt("ENCHANTMENTS.EXPLOSION.LEVEL_EXPLOSION_SIZES." + lvl);
+                p.playSound(p.getLocation(), Sound.ENTITY_GHAST_HURT, 1, 1);
                 p.getWorld().createExplosion(p.getLocation(), size);
             }
         }
