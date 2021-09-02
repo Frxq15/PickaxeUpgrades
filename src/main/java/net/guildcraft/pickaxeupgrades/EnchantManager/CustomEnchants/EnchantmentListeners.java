@@ -31,7 +31,6 @@ public class EnchantmentListeners implements Listener {
             int chance = fc.getInt("ENCHANTMENTS.EXPLOSION.PER_LEVEL_CHANCES." + lvl);
             double random = Math.random() * 100;
             if (random <= chance) {
-                //p.getWorld().spawn(p.getLocation(), TNTPrimed.class);
                 float size = fc.getInt("ENCHANTMENTS.EXPLOSION.LEVEL_EXPLOSION_SIZES." + lvl);
                 p.playSound(p.getLocation(), Sound.ENTITY_GHAST_HURT, 1, 1);
                 p.getWorld().createExplosion(p.getLocation(), size);
