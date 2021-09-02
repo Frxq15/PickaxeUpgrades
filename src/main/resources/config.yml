@@ -2,6 +2,9 @@ MESSAGES:
   NO_PERMISSION: "&cYou dont have permission to perform this command."
   UPGRADE_CANCELLED: "&f[&bGuildCraft&f] &cYou have cancelled this upgrade."
   UPGRADE_COMPLETE: "&f[&bGuildCraft&f] &7You upgraded the &b%enchant% &7enchantment to &bLevel %new% &7for &b%cost% &7Tokens."
+  CANNOT_AFFORD: "&f[&bGuildCraft&f] &7You cannot afford to purchase this upgrade."
+  LOG_HEADER: "&f[&bGuildCraft&f] &7Displaying upgrade logs for &b%player%&7:"
+  LOG_FORMAT: "&b&l ┃ &7%day% &7(%time%) &8&m->&7 Enchantment &8- &b%enchant%&7, &8&m->&7 New Level &8- &b%new%&7, &8&m->&7 Cost &8- &b%cost%&7."
 GUIS:
   PICKAXE_GUI:
     TITLE: "&fPickaxe Upgrades"
@@ -42,7 +45,7 @@ GUIS:
           - "&7Every upgrade completed is logged to prevent"
           - "&7any false reports."
       ENCHANTMENT_ITEM_FORMAT:
-        NAME: "&b&l%enchantment%"
+        NAME: "&b%enchantment%"
         MATERIAL: "BOOK"
         GLOW: false
         LORE:
@@ -55,7 +58,7 @@ GUIS:
           - ""
           - "&7Click to purchase this upgrade."
       ENCHANTMENT_ITEM_FORMAT_MAXIMUM:
-        NAME: "&b&l%enchantment%"
+        NAME: "&b%enchantment%"
         MATERIAL: "ENCHANTED_BOOK"
         GLOW: false
         LORE:

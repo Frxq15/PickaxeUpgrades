@@ -5,6 +5,7 @@ import net.guildcraft.pickaxeupgrades.Objects.Pickaxe;
 import net.guildcraft.pickaxeupgrades.PickaxeUpgrades;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -39,6 +40,7 @@ public class PickaxeGUI extends GUITemplate {
                 i++;
             }
         }
+        PlayerData pd = PlayerData.getPlayerData(p.getUniqueId());
         PickaxeUpgrades.getInstance().getFileManager().getUpgradesFile().getConfigurationSection("ENCHANTMENTS").getKeys(false).forEach(ench -> {
             FileConfiguration f = PickaxeUpgrades.getInstance().getFileManager().getUpgradesFile();
             if(PickaxeUpgrades.getInstance().getUpgradeManager(p).isMaximumLevel(Enchantment.getByName(ench))) {
@@ -48,6 +50,13 @@ public class PickaxeGUI extends GUITemplate {
                 setItem(f.getInt("ENCHANTMENTS."+ench+".GUI_SLOT"), getItem(ench), player -> {
                     new ConfirmGUI(p, pickaxe, Enchantment.getByName(ench),
                             PickaxeUpgrades.getInstance().getUpgradeManager(p).getUpgradeCost(Enchantment.getByName(ench))).open(p);
+                });
+            }
+            if(pd.getTokens() <  PickaxeUpgrades.getInstance().getUpgradeManager(p).getUpgradeCost(Enchantment.getByName(ench))) {
+                setItem(f.getInt("ENCHANTMENTS."+ench+".GUI_SLOT"), getItem(ench), player -> {
+                    p.sendMessage(PickaxeUpgrades.formatMsg("MESSAGES.CANNOT_AFFORD"));
+                    p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO, 1, 1);
+                    delete();
                 });
             }
         });

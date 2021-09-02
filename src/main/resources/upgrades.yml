@@ -15,6 +15,21 @@ ENCHANTMENTS:
       8: 80
       9: 90
       10: 100
+      11: 110
+      12: 120
+      13: 130
+      14: 140
+      15: 150
+      16: 160
+      17: 170
+      18: 180
+      19: 190
+      20: 200
+      21: 210
+      22: 220
+      23: 230
+      24: 240
+      25: 250
   LOOT_BONUS_BLOCKS:
     NAME: "Fortune"
     DESCRIPTION: "&f&oBecome richer than ever with this enchant."
@@ -31,3 +46,49 @@ ENCHANTMENTS:
       8: 80
       9: 90
       10: 100
+      11: 110
+      12: 120
+      13: 130
+      14: 140
+      15: 150
+      16: 160
+      17: 170
+      18: 180
+      19: 190
+      20: 200
+      21: 210
+      22: 220
+      23: 230
+      24: 240
+      25: 250
+  DURABILITY:
+    NAME: "Unbreaking"
+    DESCRIPTION: "&f&oNever worry about durability with this enchant."
+    MAXIMUM_LEVEL: 25
+    GUI_SLOT: 12
+    UPGRADE_COSTS:
+      1: 10
+      2: 20
+      3: 30
+      4: 40
+      5: 50
+      6: 60
+      7: 70
+      8: 80
+      9: 90
+      10: 100
+      11: 110
+      12: 120
+      13: 130
+      14: 140
+      15: 150
+      16: 160
+      17: 170
+      18: 180
+      19: 190
+      20: 200
+      21: 210
+      22: 220
+      23: 230
+      24: 240
+      25: 250

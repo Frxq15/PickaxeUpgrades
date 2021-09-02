@@ -165,7 +165,9 @@ public class GUITemplate {
         List<String> lore = new ArrayList<>();
         ItemStack item = new ItemStack(Material.valueOf(fc.getString(path+".MATERIAL")));
         ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName(PickaxeUpgrades.formatMsg(path+".NAME").replace("%enchantment%", enchant));
+        String name = PickaxeUpgrades.colourize(fc.getString("GUIS.PICKAXE_GUI.ITEMS.ENCHANTMENT_ITEM_FORMAT.NAME"));
+        name = name.replace("%enchantment%", PickaxeUpgrades.formatUpgradesMsg("ENCHANTMENTS."+enchantment.getName()+".NAME"));
+        meta.setDisplayName(PickaxeUpgrades.colourize(name));
         if(fc.getBoolean(path+".GLOW")) {
             meta.addEnchant(Enchantment.DURABILITY, 1, false);
             meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);

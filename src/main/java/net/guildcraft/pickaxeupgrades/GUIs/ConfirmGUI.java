@@ -44,6 +44,7 @@ public class ConfirmGUI extends GUITemplate {
                         .replace("%cost%", cost+"")
                         .replace("%enchant%", name).replace("%new%", newlvl+""));
                 p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
+                PickaxeUpgrades.getInstance().getUpgradeManager(p).completeUpgrade(enchant, cost);
                 delete();
             });
         }
