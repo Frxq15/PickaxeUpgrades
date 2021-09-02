@@ -1,6 +1,7 @@
 package net.guildcraft.pickaxeupgrades.EnchantManager;
 
 import net.guildcraft.pickaxeupgrades.PickaxeUpgrades;
+import org.bukkit.Bukkit;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -42,7 +43,7 @@ public class Enchantments {
     public boolean hasEnchant(ItemStack stack, String enchantment) {
         AtomicBoolean result = new AtomicBoolean(false);
         stack.getEnchantments().forEach((enchant, lvl) -> {
-            if(enchant.equals(Enchantment.getByName(enchantment))) {
+            if(enchant.equals(Enchantment.getByName(enchantment)) || (enchant.getName().equalsIgnoreCase(enchantment))) {
                 result.set(true);
             }
         });
@@ -70,7 +71,7 @@ public class Enchantments {
         if(index == 0) {
             List<String> lore = new ArrayList<>();
             if(level > 10) {
-                lore.add(index, "§7" + enchant + " enchantment.level." + level);
+                lore.set(index, "§7" + enchant + " enchantment.level." + level);
                 meta.setLore(lore);
                 stack.setItemMeta(meta);
                 return;
@@ -83,12 +84,12 @@ public class Enchantments {
         //item has a lore
         List<String> lore = meta.getLore();
         if(level > 10) {
-            lore.set(index, "§7" + enchant + " enchantment.level." + level);
+            lore.add(index, "§7" + enchant + " enchantment.level." + level);
             meta.setLore(lore);
             stack.setItemMeta(meta);
             return;
         }
-        lore.set(index, "§7" + enchant + " " + RomanNumerals(level));
+        lore.add(index, "§7" + enchant + " " + RomanNumerals(level));
         meta.setLore(lore);
         stack.setItemMeta(meta);
         return;
@@ -115,12 +116,12 @@ public class Enchantments {
                 blank = true;
         }
         if(level > 10) {
-            lore.add(index, "§7" + enchant + " enchantment.level." + level);
+            lore.add("§7" + enchant + " enchantment.level." + level);
             meta.setLore(lore);
             stack.setItemMeta(meta);
             return;
             }
-        lore.add(index, "§7" + enchant + " " + RomanNumerals(level));
+        lore.add("§7" + enchant + " " + RomanNumerals(level));
         meta.setLore(lore);
         stack.setItemMeta(meta);
         return;

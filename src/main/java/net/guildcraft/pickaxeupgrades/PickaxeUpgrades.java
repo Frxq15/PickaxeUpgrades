@@ -2,6 +2,7 @@ package net.guildcraft.pickaxeupgrades;
 
 import net.guildcraft.gctokenmanager.GCTokenManager;
 import net.guildcraft.pickaxeupgrades.Commands.pUpgradesCommand;
+import net.guildcraft.pickaxeupgrades.EnchantManager.CustomEnchants.EnchantmentListeners;
 import net.guildcraft.pickaxeupgrades.EnchantManager.EnchantmentRegistry;
 import net.guildcraft.pickaxeupgrades.EnchantManager.Enchantments;
 import net.guildcraft.pickaxeupgrades.EnchantManager.getEnchants;
@@ -51,6 +52,7 @@ public final class PickaxeUpgrades extends JavaPlugin {
         enchantmentRegistry = new EnchantmentRegistry();
         getEnchantments = new getEnchants();
         Bukkit.getPluginManager().registerEvents(new Listeners(), this);
+        Bukkit.getPluginManager().registerEvents(new EnchantmentListeners(), this);
         getCommand("pupgrades").setExecutor(new pUpgradesCommand());
     }
     public void dependencyCheck() {

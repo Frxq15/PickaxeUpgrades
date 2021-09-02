@@ -44,9 +44,10 @@ public class UpgradeManager {
         ItemMeta meta = pick.getItemMeta();
         meta.addEnchant(Enchantment.getByName(enchant), newlvl, true);
         pick.setItemMeta(meta);
+        String name = PickaxeUpgrades.getInstance().getFileManager().getUpgradesFile().getString("ENCHANTMENTS."+enchant+".NAME");
         if(pickaxe.isCustomEnchant(enchant)) {
             meta.addEnchant(Enchantment.getByName(enchant), newlvl, true);
-            PickaxeUpgrades.getInstance().getEnchantmentsManager().addEnchantmentLore(pick, enchant, newlvl);
+            PickaxeUpgrades.getInstance().getEnchantmentsManager().addEnchantmentLore(pick, name, newlvl);
         }
         PlayerData pd = PlayerData.getPlayerData(p.getUniqueId());
         pd.takeTokens(cost);

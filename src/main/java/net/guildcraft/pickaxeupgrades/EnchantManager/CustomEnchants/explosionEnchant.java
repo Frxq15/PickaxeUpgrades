@@ -10,32 +10,20 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class testEnchantment extends Enchantment implements Listener {
+public class explosionEnchant extends Enchantment {
 
-    public testEnchantment() {
-        super(new NamespacedKey(PickaxeUpgrades.getInstance(), "test"));
-    }
-
-    @EventHandler
-    public void onHit(EntityDamageByEntityEvent e) {
-        if(e.getDamager() instanceof Player) {
-            Player p = (Player) e.getDamager();
-
-            if(p.getEquipment().getChestplate().getEnchantments().containsKey
-                    (Enchantment.getByKey(PickaxeUpgrades.getInstance().getEnchantmentsList().getTestEnchant().getKey()))) {
-                e.getEntity().setGlowing(true);
-            }
-        }
+    public explosionEnchant() {
+        super(new NamespacedKey(PickaxeUpgrades.getInstance(), "EXPLOSION"));
     }
 
     @Override
     public String getName() {
-        return "test";
+        return "EXPLOSION";
     }
 
     @Override
     public int getMaxLevel() {
-        return 25;
+        return 1000;
     }
 
     @Override

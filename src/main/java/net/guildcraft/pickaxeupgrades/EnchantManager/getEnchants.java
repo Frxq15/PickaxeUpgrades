@@ -1,12 +1,12 @@
 package net.guildcraft.pickaxeupgrades.EnchantManager;
 
-import net.guildcraft.pickaxeupgrades.EnchantManager.CustomEnchants.testEnchantment;
+import net.guildcraft.pickaxeupgrades.EnchantManager.CustomEnchants.explosionEnchant;
 
 public class getEnchants {
-    public testEnchantment testEnchant;
+    public explosionEnchant explosionEnchant;
 
     public void initialize() {
-        testEnchant = new testEnchantment();
+        explosionEnchant = new explosionEnchant();
     }
-    public testEnchantment getTestEnchant() { return testEnchant; }
+    public explosionEnchant getTestEnchant() { return explosionEnchant; }
 }

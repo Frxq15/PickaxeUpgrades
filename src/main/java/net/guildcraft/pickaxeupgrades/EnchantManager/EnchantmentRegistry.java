@@ -1,6 +1,5 @@
 package net.guildcraft.pickaxeupgrades.EnchantManager;
 
-import net.guildcraft.pickaxeupgrades.EnchantManager.CustomEnchants.testEnchantment;
 import net.guildcraft.pickaxeupgrades.PickaxeUpgrades;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;

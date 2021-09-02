@@ -95,10 +95,10 @@ ENCHANTMENTS:
       23: 230
       24: 240
       25: 250
-  TEST:
-    NAME: "test enchantment"
-    DESCRIPTION: "&f&ocustom enchantment test."
-    MAXIMUM_LEVEL: 25
+  EXPLOSION:
+    NAME: "Explosion"
+    DESCRIPTION: "&f&oGenerate TNT around you."
+    MAXIMUM_LEVEL: 5
     GUI_SLOT: 13
     CUSTOM: true
     UPGRADE_COSTS:
@@ -107,23 +107,15 @@ ENCHANTMENTS:
       3: 30
       4: 40
       5: 50
-      6: 60
-      7: 70
-      8: 80
-      9: 90
-      10: 100
-      11: 110
-      12: 120
-      13: 130
-      14: 140
-      15: 150
-      16: 160
-      17: 170
-      18: 180
-      19: 190
-      20: 200
-      21: 210
-      22: 220
-      23: 230
-      24: 240
-      25: 250
+    PER_LEVEL_CHANCES: #CHANCE TO SPAWN TNT AT PLAYERS LOCATION
+      1: 1
+      2: 1.5
+      3: 2
+      4: 3
+      5: 5
+    LEVEL_EXPLOSION_SIZES:
+      1: 1
+      2: 2
+      3: 2.5
+      4: 3
+      5: 3.5
