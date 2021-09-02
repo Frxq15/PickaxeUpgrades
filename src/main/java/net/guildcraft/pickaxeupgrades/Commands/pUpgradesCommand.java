@@ -22,10 +22,10 @@ public class pUpgradesCommand implements CommandExecutor {
         if(args.length == 0) {
             ItemStack pick = p.getInventory().getItemInMainHand();
             ItemMeta meta = pick.getItemMeta();
-            meta.addEnchant(Enchantment.getByKey(PickaxeUpgrades.getInstance().getEnchantmentsList().getTestEnchant().getKey()), 1, true);
+            meta.addEnchant(Enchantment.getByKey(PickaxeUpgrades.getInstance().getEnchantmentsList().getTestEnchant().getKey()), 23, true);
             pick.setItemMeta(meta);
-            Bukkit.broadcastMessage(pick.getEnchantments().toString());
-            //Bukkit.broadcastMessage("level of test enchant, "+pick.getEnchantmentLevel(Enchantment.getByKey(PickaxeUpgrades.getInstance().getEnchantmentsList().getTestEnchant().getKey())));
+            PickaxeUpgrades.getInstance().getEnchantmentsManager().addEnchantmentLore(pick, "test", 23);
+            Bukkit.broadcastMessage(PickaxeUpgrades.getInstance().getEnchantmentsManager().getCustomLevel(pick, "test")+"");
         }
         if(args.length == 1) {
             String type = args[0];

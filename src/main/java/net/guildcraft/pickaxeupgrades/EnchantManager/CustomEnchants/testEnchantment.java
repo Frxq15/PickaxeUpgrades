@@ -35,7 +35,7 @@ public class testEnchantment extends Enchantment implements Listener {
 
     @Override
     public int getMaxLevel() {
-        return 2;
+        return 25;
     }
 
     @Override
@@ -45,7 +45,7 @@ public class testEnchantment extends Enchantment implements Listener {
 
     @Override
     public EnchantmentTarget getItemTarget() {
-        return EnchantmentTarget.ARMOR;
+        return EnchantmentTarget.TOOL;
     }
 
     @Override
