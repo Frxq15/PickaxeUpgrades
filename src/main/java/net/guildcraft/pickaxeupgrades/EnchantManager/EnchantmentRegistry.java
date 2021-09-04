@@ -55,8 +55,10 @@ public class EnchantmentRegistry {
         }
     }
     public void registration() {
-        getEnchants ge = PickaxeUpgrades.getInstance().getEnchantmentsList();
-        enchants.add(ge.getTestEnchant());
+        enchantStorage ge = PickaxeUpgrades.getInstance().getEnchantmentsList();
+        enchants.add(ge.getExplosionEnchant());
+        enchants.add(ge.getSpeedEnchant());
+        enchants.add(ge.getHasteEnchant());
         enchants.forEach(enchant -> {
             register(enchant);
         });

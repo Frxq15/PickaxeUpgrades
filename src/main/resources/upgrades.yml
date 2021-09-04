@@ -119,3 +119,47 @@ ENCHANTMENTS:
       3: 2.5
       4: 3
       5: 3.5
+  SPEED:
+    NAME: "Speed"
+    DESCRIPTION: "&f&oSpeed around the mines."
+    MAXIMUM_LEVEL: 3
+    GUI_SLOT: 14
+    CUSTOM: true
+    UPGRADE_COSTS:
+      1: 10
+      2: 20
+      3: 30
+    PER_LEVEL_CHANCES: #CHANCE TO GIVE THE PLAYER SPEED
+      1: 1
+      2: 1.5
+      3: 2
+    LEVEL_SPEED_TYPE:
+      1: 0
+      2: 0
+      3: 1
+    LEVEL_SPEED_TIME: #TIME IN SECONDS
+      1: 5
+      2: 10
+      3: 15
+  HASTE:
+    NAME: "Haste"
+    DESCRIPTION: "&f&oSlash through blocks instantly."
+    MAXIMUM_LEVEL: 3
+    GUI_SLOT: 15
+    CUSTOM: true
+    UPGRADE_COSTS:
+      1: 10
+      2: 20
+      3: 30
+    PER_LEVEL_CHANCES: #CHANCE TO GIVE THE PLAYER HASTE
+      1: 1
+      2: 1.5
+      3: 2
+    LEVEL_SPEED_TYPE:
+      1: 0
+      2: 0
+      3: 1
+    LEVEL_SPEED_TIME: #TIME IN SECONDS
+      1: 5
+      2: 10
+      3: 15

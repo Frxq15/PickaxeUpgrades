@@ -1,11 +1,10 @@
 package net.guildcraft.pickaxeupgrades;
 
-import net.guildcraft.gctokenmanager.GCTokenManager;
 import net.guildcraft.pickaxeupgrades.Commands.pUpgradesCommand;
-import net.guildcraft.pickaxeupgrades.EnchantManager.CustomEnchants.EnchantmentListeners;
+import net.guildcraft.pickaxeupgrades.EnchantManager.EnchantmentListeners;
 import net.guildcraft.pickaxeupgrades.EnchantManager.EnchantmentRegistry;
 import net.guildcraft.pickaxeupgrades.EnchantManager.Enchantments;
-import net.guildcraft.pickaxeupgrades.EnchantManager.getEnchants;
+import net.guildcraft.pickaxeupgrades.EnchantManager.enchantStorage;
 import net.guildcraft.pickaxeupgrades.Objects.TransactionManager;
 import net.guildcraft.pickaxeupgrades.Objects.UpgradeManager;
 import org.bukkit.Bukkit;
@@ -14,7 +13,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public final class PickaxeUpgrades extends JavaPlugin {
@@ -24,7 +22,7 @@ public final class PickaxeUpgrades extends JavaPlugin {
     public UpgradeManager upgradeManager;
     public TransactionManager transactionManager;
     public EnchantmentRegistry enchantmentRegistry;
-    public getEnchants getEnchantments;
+    public enchantStorage getEnchantments;
 
     @Override
     public void onEnable() {
@@ -50,7 +48,7 @@ public final class PickaxeUpgrades extends JavaPlugin {
         fileManager = new FileManager();
         enchantments = new Enchantments();
         enchantmentRegistry = new EnchantmentRegistry();
-        getEnchantments = new getEnchants();
+        getEnchantments = new enchantStorage();
         Bukkit.getPluginManager().registerEvents(new Listeners(), this);
         Bukkit.getPluginManager().registerEvents(new EnchantmentListeners(), this);
         getCommand("pupgrades").setExecutor(new pUpgradesCommand());
@@ -64,7 +62,7 @@ public final class PickaxeUpgrades extends JavaPlugin {
     public static PickaxeUpgrades getInstance() { return instance; }
     public FileManager getFileManager() { return fileManager; }
     public Enchantments getEnchantmentsManager() { return enchantments; }
-    public getEnchants getEnchantmentsList() { return getEnchantments; }
+    public enchantStorage getEnchantmentsList() { return getEnchantments; }
     public UpgradeManager getUpgradeManager(Player p) {
         upgradeManager = new UpgradeManager(p);
         return upgradeManager; }

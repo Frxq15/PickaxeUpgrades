@@ -43,14 +43,16 @@ public class Enchantments {
     public boolean hasEnchant(ItemStack stack, String enchantment) {
         AtomicBoolean result = new AtomicBoolean(false);
         stack.getEnchantments().forEach((enchant, lvl) -> {
-            if(enchant.equals(Enchantment.getByName(enchantment)) || (enchant.getName().equalsIgnoreCase(enchantment))) {
+            if(enchant.equals(Enchantment.getByName(enchantment.toUpperCase())) || (enchant.getName().equalsIgnoreCase(enchantment.toUpperCase()))) {
                 result.set(true);
             }
         });
+        Bukkit.broadcastMessage("has enchant "+result.get());
         return result.get();
 
     }
     public int getEnchantLoreIndex(ItemStack stack, String enchantment) {
+        Bukkit.broadcastMessage("enchant lore index for"+enchantment);
         List<String> lore = new ArrayList<>();
         ItemMeta meta = stack.getItemMeta();
         if(meta.getLore() == null) {
@@ -66,6 +68,7 @@ public class Enchantments {
         return index;
     }
     public void setEnchantmentLore(ItemStack stack, String enchant, int level) {
+        Bukkit.broadcastMessage("setenchantmentlore ran");
         int index = getEnchantLoreIndex(stack, enchant);
         ItemMeta meta = stack.getItemMeta();
         if(index == 0) {
@@ -96,7 +99,9 @@ public class Enchantments {
 
     }
     public void addEnchantmentLore(ItemStack stack, String enchant, int level) {
+        Bukkit.broadcastMessage("addenchantmentlore ran for"+enchant);
         if(hasEnchant(stack, enchant)) {
+            Bukkit.broadcastMessage("HAS ENCHANTMENT FROM ADDLORE");
             setEnchantmentLore(stack, enchant, level);
             return;
         }
@@ -104,16 +109,6 @@ public class Enchantments {
         List<String> lore = new ArrayList<>();
         if(meta.getLore() != null) {
             lore = meta.getLore();
-        }
-        int index = 0;
-        boolean blank = false;
-            while (blank == false) { //Skip to the first blank line in lore
-                for(String line : lore) {
-                    if(!line.equalsIgnoreCase("")) {
-                        index++;
-                    }
-                }
-                blank = true;
         }
         if(level > 10) {
             lore.add("§7" + enchant + " enchantment.level." + level);

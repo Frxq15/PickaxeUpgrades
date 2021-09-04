@@ -4,21 +4,16 @@ import net.guildcraft.pickaxeupgrades.PickaxeUpgrades;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentTarget;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class explosionEnchant extends Enchantment {
-
-    public explosionEnchant() {
-        super(new NamespacedKey(PickaxeUpgrades.getInstance(), "EXPLOSION"));
+public class hasteEnchant extends Enchantment {
+    public hasteEnchant() {
+        super(new NamespacedKey(PickaxeUpgrades.getInstance(), "HASTE"));
     }
 
     @Override
     public String getName() {
-        return "EXPLOSION";
+        return "HASTE";
     }
 
     @Override
